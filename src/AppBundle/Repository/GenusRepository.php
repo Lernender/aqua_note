@@ -1,15 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 27.07.17
- * Time: 15:04
- */
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Genus;
+use Doctrine\ORM\EntityRepository;
 
-class GenusRepository
+class GenusRepository extends EntityRepository
 {
-
+    /**
+     * @return Genus[]
+     */
+    public function findAllPublishedOrderedBySize()
+    {
+        return $this->createQueryBuilder('genus')
+            ->andWhere('genus.isPublished = :isPublished')
+            ->setParameter('isPublished', true)
+            ->orderBy('genus.speciesCount', 'DESC')
+            ->getQuery()
+            ->execute();
+    }
 }
