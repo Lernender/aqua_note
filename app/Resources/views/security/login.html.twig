@@ -16,7 +16,9 @@
                     {{ form_row(form._username) }}
                     {{ form_row(form._password) }}
 
-                <button type="submit" class="btn btn-success">Login!<span class="fa fa-lock"></button>
+                    <button type="submit" class="btn btn-success">Login!<span class="fa fa-lock"></button>
+                    &nbsp;
+                    <a href="{{ path('user_register') }}">Register</a>
                 {{ form_end(form) }}
             </div>
         </div>
